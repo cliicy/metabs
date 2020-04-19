@@ -1,0 +1,18 @@
+run: java -jar metabase.jar
+# run: /kvm.bk/software/jdk-11.0.6+10-jre/bin/java -jar metabase.jar
+
+# modify the postgresql.conf file under data_dir
+# refer to https://blog.csdn.net/pg_hgdb/article/details/78717974
+# listen_addresses = 'localhost,192.168.11.202' or 
+# listen_addresses = '*'  
+
+# modify the pg_hba.conf file under data_dir
+# IPv4 local connections:
+# host    all             all             0.0.0.0/0            trust
+
+
+# create table
+/opt/app/postgresql-10.10/bin/psql vandat  -f ./cr.sql
+
+# import data from csv to pgsql
+/opt/app/postgresql-10.10/bin/psql vandat -c "\copy poc_benchmk from '/kvm.bk/software/metabase/mb-pgsql-48663-50772-50903.csv' WITH CSV HEADER"

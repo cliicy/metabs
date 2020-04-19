@@ -1,0 +1,46 @@
+# export test case identifier 
+export drv_id=vanda
+
+#
+# Configuraiton of PG sysbench test
+#
+export capacity_stat="/sys/block/${dev_name}/sfx_smart_features/sfx_capacity_stat"
+export css_status=sfx-status
+
+# where to save the test result
+export result_dir=/home/`whoami`/benchmark/postgresql/sysbench/sfx/
+
+#
+# css card configuraiton
+# it is used to collect iostat information
+# multiple device can be put here
+#
+export dev_name=sfdv0n1
+export disk="/dev/${dev_name}"
+export fs_type=xfs
+export mnt_opt=" -o discard,noatime,nodiratime"
+export mnt_point_data="/opt/data/metadb"
+export run_user=`whoami`
+
+# App configuraiton
+export app_basedir=/opt/app/postgresql-10.10
+export app_version=postgresql-10.10
+export app_datadir=${mnt_point_data}/${app_version}
+export app_pgconf=`pwd`/cfg/postgresql.conf
+export app_dbglog=${mnt_point_data}/${app_version}/pgq.log
+export logfolder=pg
+
+# postgreSQL/mysql server/data specific
+export host=localhost
+export user=tcn
+export port=5432
+export dbname=vandat
+export tbname=poc_benchmk
+export crtbsql=`pwd`/cfg/cr.sql
+export mbdata_dir=`pwd`/csv-data/
+export datafile=${mbdata_dir}/metadata.csv
+#export datafile=`pwd`/csv-data/mb-mysql-48663-50772.csv
+export summary_dir=`pwd`/sample_data/51043_test_output/
+export metabase_column=("test_case,""run_time,""fw_version,""sw_version,""test_item,""TPS,"\
+"%99 latency,""Read throughput (MB/s),""Write throughput (MB/s),""avgrq-sz,"\
+"avgqu-sz,""%user cpu,""%sys cpu,""%iowait cpu")

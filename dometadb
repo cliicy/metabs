@@ -1,0 +1,4 @@
+#!/bin/bash
+
+sh ./3_collectdb.sh cfg/datatb.cnf
+sh ./3_importdb.sh cfg/datatb.cnf
